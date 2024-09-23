@@ -1,0 +1,6 @@
+{
+	"files.associations": {
+		"main.h": "c",
+		"bsp_rtoskey.h": "c"
+	}
+}

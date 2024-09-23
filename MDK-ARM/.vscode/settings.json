@@ -1,0 +1,10 @@
+{
+	"files.associations": {
+		"multi_button.h": "c",
+		"bsp_rtoskey.h": "c",
+		"freertos.h": "c",
+		"task.h": "c",
+		"main.h": "c",
+		"queue.h": "c"
+	}
+}

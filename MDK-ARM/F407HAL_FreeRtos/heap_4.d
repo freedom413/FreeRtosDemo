@@ -1,0 +1,14 @@
+f407hal_freertos\heap_4.o: ..\FreeRTOS-Kernel\portable\MemMang\heap_4.c
+f407hal_freertos\heap_4.o: C:\Users\ff\AppData\Local\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+f407hal_freertos\heap_4.o: C:\Users\ff\AppData\Local\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+f407hal_freertos\heap_4.o: ../FreeRTOS-Kernel/include/FreeRTOS.h
+f407hal_freertos\heap_4.o: C:\Users\ff\AppData\Local\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+f407hal_freertos\heap_4.o: C:\Users\ff\AppData\Local\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+f407hal_freertos\heap_4.o: ../FreeRTOS-Kernel/include/FreeRTOSConfig.h
+f407hal_freertos\heap_4.o: ../FreeRTOS-Kernel/include/projdefs.h
+f407hal_freertos\heap_4.o: ../FreeRTOS-Kernel/include/portable.h
+f407hal_freertos\heap_4.o: ../FreeRTOS-Kernel/include/deprecated_definitions.h
+f407hal_freertos\heap_4.o: ../FreeRTOS-Kernel/portable/MemMang/portmacro.h
+f407hal_freertos\heap_4.o: ../FreeRTOS-Kernel/include/mpu_wrappers.h
+f407hal_freertos\heap_4.o: ../FreeRTOS-Kernel/include/task.h
+f407hal_freertos\heap_4.o: ../FreeRTOS-Kernel/include/list.h
