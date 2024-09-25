@@ -3,6 +3,8 @@
 "f407hal_freertos\bsp_rtoskey.o"
 "f407hal_freertos\usertask.o"
 "f407hal_freertos\userqueue.o"
+"f407hal_freertos\user_semaphore.o"
+"f407hal_freertos\fifo_lib.o"
 "f407hal_freertos\main.o"
 "f407hal_freertos\gpio.o"
 "f407hal_freertos\usart.o"
@@ -36,7 +38,7 @@
 "f407hal_freertos\tasks.o"
 "f407hal_freertos\timers.o"
 "f407hal_freertos\multi_button.o"
---library_type=microlib --strict --scatter "F407HAL_FreeRtos\F407HAL_FreeRtos.sct"
+--strict --scatter "F407HAL_FreeRtos\F407HAL_FreeRtos.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "F407HAL_FreeRtos.map" -o F407HAL_FreeRtos\F407HAL_FreeRtos.axf

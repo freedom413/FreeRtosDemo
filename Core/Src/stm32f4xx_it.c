@@ -1,20 +1,20 @@
 /* USER CODE BEGIN Header */
 /**
-  ******************************************************************************
-  * @file    stm32f4xx_it.c
-  * @brief   Interrupt Service Routines.
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2024 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  */
+ ******************************************************************************
+ * @file    stm32f4xx_it.c
+ * @brief   Interrupt Service Routines.
+ ******************************************************************************
+ * @attention
+ *
+ * Copyright (c) 2024 STMicroelectronics.
+ * All rights reserved.
+ *
+ * This software is licensed under terms that can be found in the LICENSE file
+ * in the root directory of this software component.
+ * If no LICENSE file comes with this software, it is provided AS-IS.
+ *
+ ******************************************************************************
+ */
 /* USER CODE END Header */
 
 /* Includes ------------------------------------------------------------------*/
@@ -74,7 +74,7 @@ void NMI_Handler(void)
 
   /* USER CODE END NonMaskableInt_IRQn 0 */
   /* USER CODE BEGIN NonMaskableInt_IRQn 1 */
-   while (1)
+  while (1)
   {
   }
   /* USER CODE END NonMaskableInt_IRQn 1 */
@@ -166,9 +166,23 @@ void DebugMon_Handler(void)
 void USART1_IRQHandler(void)
 {
   /* USER CODE BEGIN USART1_IRQn 0 */
-
+  if (__HAL_UART_GET_FLAG(&huart1, UART_FLAG_RXNE))
+  {
+    huart1.RxCpltCallback(&huart1);
+    __HAL_UART_CLEAR_FLAG(&huart1, UART_FLAG_RXNE);
+  }
+  if (__HAL_UART_GET_FLAG(&huart1, UART_FLAG_ORE))
+  {
+    // 读取�?次DR来清除ORE标志
+    uint16_t pucByte = (uint16_t)((&huart1)->Instance->DR & (uint16_t)0x01FF);
+    __HAL_UART_CLEAR_OREFLAG(&huart1);
+  }
+  if (__HAL_UART_GET_FLAG(&huart1, UART_FLAG_TC))
+  {
+    huart1.TxCpltCallback(&huart1);
+    __HAL_UART_CLEAR_FLAG(&huart1, UART_FLAG_TC);
+  }
   /* USER CODE END USART1_IRQn 0 */
-  HAL_UART_IRQHandler(&huart1);
   /* USER CODE BEGIN USART1_IRQn 1 */
 
   /* USER CODE END USART1_IRQn 1 */

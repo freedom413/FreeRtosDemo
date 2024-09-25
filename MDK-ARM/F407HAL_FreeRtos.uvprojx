@@ -191,7 +191,7 @@
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
-            <useUlib>1</useUlib>
+            <useUlib>0</useUlib>
             <EndSel>0</EndSel>
             <uLtcg>0</uLtcg>
             <nSecure>0</nSecure>
@@ -341,7 +341,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F407xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../FreeRTOS-Kernel/include;../FreeRTOS-Kernel/portable/MemMang;../MultiButton-master</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../FreeRTOS-Kernel/include;../FreeRTOS-Kernel/portable/MemMang;../MultiButton-master;../Drivers/USER_LIB</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -409,6 +409,16 @@
               <FileName>Userqueue.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Core\Src\Userqueue.c</FilePath>
+            </File>
+            <File>
+              <FileName>User_semaphore.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Core\Src\User_semaphore.c</FilePath>
+            </File>
+            <File>
+              <FileName>FIFO_lib.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\USER_LIB\FIFO_lib.c</FilePath>
             </File>
             <File>
               <FileName>main.c</FileName>

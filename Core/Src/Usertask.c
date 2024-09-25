@@ -80,6 +80,7 @@ void taskInit(void)
 // 通过传入的参数来控制不同led翻转
 void taskled1_app(void *p)
 {
+  uint16_t j = 0;
   while (1) // 每个运行函数必须有死循环
   {
     uint8_t *is = (uint8_t *)p; // 参数强制转换
@@ -87,12 +88,15 @@ void taskled1_app(void *p)
     {
       HAL_GPIO_TogglePin(LED2_GPIO_Port, LED2_Pin);
       vTaskDelay(1000);
+      printf("led2:%d\r\n",j++);
     }
     else if (*is == 2)
     {
       HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
       vTaskDelay(1500);
+      printf("led1:%d\r\n",j++);
     }
+
   }
 }
 
@@ -118,7 +122,6 @@ void taskState_app(void *p)
     {
       vTaskSuspend(taskled1); // 唤醒任务
       vTaskResume(stask1ctr); // 暂停任务
-                              // vTaskPrioritySet(taskled2,3);
     }
     else if (/*GetKey() == KEY1*/  get_button_event(&MKEY1) == SINGLE_CLICK)
     {

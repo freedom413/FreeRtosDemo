@@ -21,6 +21,9 @@
 #include "usart.h"
 
 /* USER CODE BEGIN 0 */
+#define EN_microlib  0  
+
+#if EN_microlib
 #include "stdio.h"
 #ifdef __GNUC__
 /* With GCC, small printf (option LD Linker->Libraries->Small printf
@@ -30,12 +33,33 @@
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 #endif /* __GNUC__ */
 
-PUTCHAR_PROTOTYPE
+int fputc(int ch, FILE *f)
 {
-	while((USART1->SR & 0x40) == 0);
-	USART1->DR = (uint8_t)ch;
+	// while((USART1->SR & 0x40) == 0);
+	// USART1->DR = (uint8_t)ch;
+  uint8_t tp =  ch;
+  HAL_UART_Transmit(&huart1,&tp,1,10);  //具有超时退出功能
 	return ch;
 }
+
+#else
+
+#pragma import(__use_no_semihosting)               
+struct __FILE       { int handle; };     // 标准库需要的支持函数
+FILE __stdout;                           // FILE 在stdio.h文件
+void _sys_exit(int x) {        x = x; }         // 定义_sys_exit()以避免使用半主机模式
+
+int fputc(int ch, FILE *f)               // 重定向fputc函数，使printf的输出，由fputc输出到UART,  这里使用串口1(USART1)
+{   
+    //if(xFlag.PrintfOK == 0) return 0;  // 判断USART是否已配置，防止在配置前调用printf被卡死    
+    // while((USART1 ->SR&0X40)==0);        // 等待上一次串口数据发送完成  
+    //     USART1 ->DR = (uint8_t) ch;  
+                     // 写DR,串口1将发送数据  
+    uint8_t tp =  ch;
+    HAL_UART_Transmit(&huart1,&tp,1,10);  //具有超时退出功能
+        return ch;
+}
+#endif
 
 
 /* USER CODE END 0 */
@@ -97,7 +121,7 @@ void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
     /* USART1 interrupt Init */
-    HAL_NVIC_SetPriority(USART1_IRQn, 0, 0);
+    HAL_NVIC_SetPriority(USART1_IRQn, 3, 0);
     HAL_NVIC_EnableIRQ(USART1_IRQn);
   /* USER CODE BEGIN USART1_MspInit 1 */
 

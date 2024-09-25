@@ -51,7 +51,7 @@
  * The default value is set to 20MHz and matches the QEMU demo settings.  Your
  * application will certainly need a different value so set this correctly.
  * This is very often, but not always, equal to the main system clock frequency. */
-#define configCPU_CLOCK_HZ    ( ( unsigned long ) 168000000 )
+#define configCPU_CLOCK_HZ    ( ( unsigned long ) 168000000 )  //系统时钟频率
 
 /* configSYSTICK_CLOCK_HZ is an optional parameter for ARM Cortex-M ports only.
  *
@@ -75,19 +75,19 @@
 
 /* configTICK_RATE_HZ sets frequency of the tick interrupt in Hz, normally
  * calculated from the configCPU_CLOCK_HZ value. */
-#define configTICK_RATE_HZ                         1000
+#define configTICK_RATE_HZ                         1000 //freertos心跳频率
 
 /* Set configUSE_PREEMPTION to 1 to use pre-emptive scheduling.  Set
  * configUSE_PREEMPTION to 0 to use co-operative scheduling.
  * See https://www.freertos.org/single-core-amp-smp-rtos-scheduling.html. */
-#define configUSE_PREEMPTION                       1
+#define configUSE_PREEMPTION                       1  //抢占式
 
 /* Set configUSE_TIME_SLICING to 1 to have the scheduler switch between Ready
  * state tasks of equal priority on every tick interrupt.  Set
  * configUSE_TIME_SLICING to 0 to prevent the scheduler switching between Ready
  * state tasks just because there was a tick interrupt.  See
  * https://freertos.org/single-core-amp-smp-rtos-scheduling.html. */
-#define configUSE_TIME_SLICING                     0
+#define configUSE_TIME_SLICING                     1  //时间片轮转
 
 /* Set configUSE_PORT_OPTIMISED_TASK_SELECTION to 1 to select the next task to
  * run using an algorithm optimised to the instruction set of the target hardware -
@@ -101,7 +101,7 @@
  * 0 to keep the tick interrupt running at all times.  Not all FreeRTOS ports
  * support tickless mode. See https://www.freertos.org/low-power-tickless-rtos.html
  * Defaults to 0 if left undefined. */
-#define configUSE_TICKLESS_IDLE                    0
+#define configUSE_TICKLESS_IDLE                    1
 
 /* configMAX_PRIORITIES Sets the number of available task priorities.  Tasks can
  * be assigned priorities of 0 to (configMAX_PRIORITIES - 1).  Zero is the lowest
@@ -308,7 +308,7 @@
  * switch performing interrupts.  Not supported by all FreeRTOS ports.  See
  * https://www.freertos.org/RTOS-Cortex-M3-M4.html for information specific to
  * ARM Cortex-M devices. */
-#define configKERNEL_INTERRUPT_PRIORITY          0x50
+#define configKERNEL_INTERRUPT_PRIORITY          0xF0  //系统最低优先级
 
 /* configMAX_SYSCALL_INTERRUPT_PRIORITY sets the interrupt priority above which
  * FreeRTOS API calls must not be made.  Interrupts above this priority are never
@@ -316,11 +316,11 @@
  * highest interrupt priority (0).  Not supported by all FreeRTOS ports.
  * See https://www.freertos.org/RTOS-Cortex-M3-M4.html for information specific to
  * ARM Cortex-M devices. */
-#define configMAX_SYSCALL_INTERRUPT_PRIORITY     0x50
+#define configMAX_SYSCALL_INTERRUPT_PRIORITY     0x10 //freertos 可以管理的最高中断优先级 这里设置成0表示完全接管
 
 /* Another name for configMAX_SYSCALL_INTERRUPT_PRIORITY - the name used depends
  * on the FreeRTOS port. */
-#define configMAX_API_CALL_INTERRUPT_PRIORITY    0x05
+#define configMAX_API_CALL_INTERRUPT_PRIORITY    0x10 //freertos 可以管理的最高中断优先级 这里设置成0表示完全接管
 
 /******************************************************************************/
 /* Hook and callback function related definitions. ****************************/
